@@ -1,0 +1,25 @@
+@url=http://localhost:8080/user
+
+GET {{url}}/checkUser
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTZkZGVmNDk1NGU0ZWQ5ZDBiNzFiZTkiLCJpYXQiOjE3MDE2OTk1MzF9.VKaJZDzZmi0PdIwRnHkegvEwCtyO8JHrbzLB9IhiOu8
+
+###
+
+POST {{url}}/register
+Content-Type: application/json
+
+{
+    "username": "tuan",
+    "password": "1234",
+    "name": "Tuan"
+}
+
+###
+
+POST {{url}}/login
+Content-Type: application/json
+
+{
+    "username": "tuan",
+    "password": "1234"
+}
