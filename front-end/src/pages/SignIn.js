@@ -34,10 +34,10 @@ const SignIn = () => {
         <Content className="signin" style={{ minHeight: "100vh" }}>
           <Row justify="space-around">
             <Col style={{ marginTop: "50px" }}>
-              <Title className="mb-15" style={{ marginLeft: '125px' }}>QLDA</Title>
-              <Title className="font-regular text-muted" level={5}>
-                Vì một xã hội số văn minh và hiện đại hóa
-              </Title>
+              <Title className="mb-15">Đăng nhập</Title>
+              {/* <Title className="font-regular text-muted" level={5}>
+                                Vì một xã hội số văn minh và hiện đại hóa
+                            </Title> */}
               <Form
                 layout="vertical"
                 className="row-col"
