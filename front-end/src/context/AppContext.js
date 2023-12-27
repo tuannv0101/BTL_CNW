@@ -7,7 +7,7 @@ const AppContext = createContext();
 
 const AppContextProvider = ({ children }) => {
     const [user, setUser] = useState(null)
-
+    const [diCho, setDiCho] = useState([])
     const history = useHistory();
 
     const handleLogin = async (username, password) => {
@@ -42,13 +42,25 @@ const AppContextProvider = ({ children }) => {
             message.error(error.message)
         }
     }
+    const fetchDiCho = async (userId) => {
+        try {
+            const res = await fetch(`${BACK_END_URL}market/${userId}`)
+            const data = await res.json();
+            setDiCho(data.data)
+        } catch (error) {
+            console.log(error.message);
+            message.error(error.message)
+        }
+    }
 
     return (
         <AppContext.Provider value={
             {
                 user,
                 setUser,
-                handleLogin
+                handleLogin,
+                fetchDiCho,
+                diCho
             }
         }>
             {children}
