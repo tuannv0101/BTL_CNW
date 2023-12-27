@@ -1,10 +1,12 @@
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import SignIn from "./pages/SignIn";
+import Main from "./components/layout/Main";
 import "antd/dist/antd.css";
 import "./assets/styles/main.css";
 import "./assets/styles/responsive.css";
-import DiCho from "./components/dicho/DiCho";
 import AppContextProvider from "./context/AppContext";
+
+import Nhom from "./components/nhom/Nhom";
 
 function App() {
   return (
@@ -12,7 +14,9 @@ function App() {
       <div className="App">
         <Switch>
           <Route path="/dang-nhap" exact component={SignIn} />
-          <Route path="/di-cho" exact component={DiCho} />
+          <Route path="/nhom" exact component={Nhom} />
+          <Main>
+          </Main>
         </Switch>
       </div>
     </AppContextProvider>
