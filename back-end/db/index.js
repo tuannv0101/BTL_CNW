@@ -1,22 +1,24 @@
-'use strict'
+const mysql = require('mysql2')
 
-const mongoose = require('mongoose')
-const config = require('../configs')
+const config = {
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'food'
+}
 
 class Database {
     constructor() {
         this.connect()
     }
 
-    connect(type = "mongodb") {
-        if (1 === 1) {
-            mongoose.set("debug", true)
-            mongoose.set("debug", { color: true })
+    async connect(type = 'MySQL') {
+        try {
+            this.connection = mysql.createConnection(config)
+            console.log("DB connected");
+        } catch (error) {
+            console.log(error.message || "Cannot connect to DB");
         }
-
-        mongoose.connect(config.db.url)
-            .then(_ => console.log("Connected MongoDB Success!"))
-            .catch(err => console.log("Connect fail!" + err.message))
     }
 
     static getInstance() {
@@ -28,5 +30,5 @@ class Database {
     }
 }
 
-const instanceMongodb = Database.getInstance()
-module.exports = instanceMongodb
+const instanceMySQL = Database.getInstance()
+module.exports = instanceMySQL.connection
