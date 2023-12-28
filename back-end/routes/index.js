@@ -4,6 +4,7 @@ const groupController = require('../controllers/group.controller');
 const memberController = require('../controllers/member.controller');
 const foodController = require('../controllers/food.controller');
 const marketController = require('../controllers/market.controller');
+const recipeController = require('../controllers/recipe.controller')
 
 const router = express.Router();
 
@@ -30,5 +31,10 @@ router.get('/food/delete/:idFood', foodController.delete);
 router.get('/market/:idUser', marketController.getAll);
 router.post('/market/add', marketController.add);
 router.post('/market/buy', marketController.buy);
+
+// recipe
+router.post('/recipe', recipeController.getAll)
+router.post('/recipe/add', recipeController.add)
+
 
 module.exports = router
