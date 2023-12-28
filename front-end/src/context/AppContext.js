@@ -8,7 +8,7 @@ const AppContext = createContext();
 const AppContextProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [group, setGroup] = useState([])
-
+    const [congThuc, setCongThuc] = useState([])
     const history = useHistory();
 
     const handleLogin = async (username, password) => {
@@ -57,6 +57,26 @@ const AppContextProvider = ({ children }) => {
             message.error(error.message)
         }
     }
+    const fetchCongThuc = async (userId) => {
+        try {
+            const options = {
+                method: "POST",
+                mode: "cors",
+                cache: "no-cache",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ userId })
+            }
+            const res = await fetch(`${BACK_END_URL}recipe`, options)
+            const data = await res.json();
+            setCongThuc(data.data)
+        } catch (error) {
+            console.log(error.message);
+            message.error(error.message)
+        }
+    }
 
     return (
         <AppContext.Provider value={
@@ -66,6 +86,8 @@ const AppContextProvider = ({ children }) => {
                 handleLogin,
                 group,
                 fetchNhom,
+                fetchCongThuc,
+                congThuc
             }
         }>
             {children}

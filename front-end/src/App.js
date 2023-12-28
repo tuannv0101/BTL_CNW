@@ -1,6 +1,7 @@
 import { Switch, Route, Redirect } from "react-router-dom";
 import SignIn from "./pages/SignIn";
 import Main from "./components/layout/Main";
+import CongThuc from "./components/congthuc/CongThuc";
 import "antd/dist/antd.css";
 import "./assets/styles/main.css";
 import "./assets/styles/responsive.css";
@@ -15,6 +16,7 @@ function App() {
         <Switch>
           <Route path="/dang-nhap" exact component={SignIn} />
           <Route path="/nhom" exact component={Nhom} />
+          <Route path="/cong-thuc" exact component={CongThuc} />
           <Main>
           </Main>
         </Switch>
