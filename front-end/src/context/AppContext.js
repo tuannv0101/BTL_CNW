@@ -9,6 +9,8 @@ const AppContextProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [group, setGroup] = useState([])
     const [congThuc, setCongThuc] = useState([])
+    const [kho, setKho] = useState([])
+    const [monDo, setMonDo] = useState([])
     const history = useHistory();
 
     const handleLogin = async (username, password) => {
@@ -77,6 +79,37 @@ const AppContextProvider = ({ children }) => {
             message.error(error.message)
         }
     }
+    const fetchKho = async (userId) => {
+        try {
+            const res = await fetch(`${BACK_END_URL}store/${userId}`)
+            const data = await res.json();
+            setKho(data.data)
+        } catch (error) {
+            console.log(error.message);
+            message.error(error.message)
+        }
+    }
+
+    const fetchMonDo = async (userId) => {
+        try {
+            const options = {
+                method: "POST",
+                mode: "cors",
+                cache: "no-cache",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ userId })
+            }
+            const res = await fetch(`${BACK_END_URL}food`, options)
+            const data = await res.json();
+            setMonDo(data.data)
+        } catch (error) {
+            console.log(error.message);
+            message.error(error.message)
+        }
+    }
 
     return (
         <AppContext.Provider value={
@@ -87,7 +120,19 @@ const AppContextProvider = ({ children }) => {
                 group,
                 fetchNhom,
                 fetchCongThuc,
-                congThuc
+                congThuc,
+                fetchKho,
+                kho,
+                fetchMonDo,
+                monDo,
+                setMonDo,
+                diCho,
+                fetchNauAn,
+                nauAn,
+                fetchDiChoShare,
+                diChoShare,
+                fetchUserNormal,
+                userNormal
             }
         }>
             {children}
