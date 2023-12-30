@@ -7,7 +7,7 @@ import "antd/dist/antd.css";
 import "./assets/styles/main.css";
 import "./assets/styles/responsive.css";
 import AppContextProvider from "./context/AppContext";
-
+import NauAn from "./components/nauan/NauAn";
 import Nhom from "./components/nhom/Nhom";
 import NhomChiTiet from "./components/nhom/NhomChiTiet";
 import MonDo from "./components/mondo/MonDo";
@@ -24,6 +24,7 @@ function App() {
             <Route path="/nhom" exact component={Nhom} />
             <Route path="/nhom/:id" exact component={NhomChiTiet} />
             <Route path="/mon-do" exact component={MonDo} />
+            <Route path="/nau-an" exact component={NauAn} />
           </Main>
         </Switch>
       </div>
